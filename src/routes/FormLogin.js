@@ -4,7 +4,21 @@ import {  Image, View, KeyboardAvoidingView, TextInput, TouchableOpacity,Text, S
 import { Actions } from 'react-native-router-flux';
 
  class FormLogin extends Component{
-render (){
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      user: "",
+      pass: ""
+    };
+    /**clicou = () => {
+      if(user == 'a' && pass == 'b')
+      this.props.navigation.navigate("Home");
+    }
+    */
+  }
+  
+  render (){
   return(
   
     <KeyboardAvoidingView style={style.background}>
@@ -18,19 +32,31 @@ render (){
     <TextInput placeholder="Email"
     style={style.input}
       autoCorrect={false}
-      onChangeText={()=>{}}
+      value={this.state.user}
+      
       />
       <TextInput placeholder="Senha"
       style={style.input}
       autoCorrect={false}
-      onChangeText={()=>{}}
+      value={this.state.pass}
       />
 
-      <TouchableOpacity style={style.btnSubmit}>
+      <TouchableHighlight
+      onPress={() => {
+        this.props.navigation.navigate("Home");
+      }}
+      style={style.btnSubmit} 
+       
+      >
         <Text style={style.submitText}>Acessar</Text>
-      </TouchableOpacity>  
+      </TouchableHighlight>  
       
-        <TouchableHighlight onPress={() => Actions.formCadastro()} style={style.BtnRegister}>
+        <TouchableHighlight 
+        onPress={() => {
+        this.props.navigation.navigate("Cadastro");
+        
+      }}
+       style={style.BtnRegister}>
         <Text style={style.registerText}>Criar Conta</Text>
         </TouchableHighlight> 
     </View>

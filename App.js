@@ -1,27 +1,39 @@
 
 import React from 'react';
+import {StyleSheet} from 'react-native';
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import Login from './src/routes/FormLogin';
 import 'react-native-gesture-handler';
 import FormLogin from './src/routes/FormLogin';
-
-export default class App extends React.Component {
-    render(){
-        return(
-<AppStackNavigator />
-        );
-    }
-}
+import FormCadastro from './src/routes/FormCadastro';
+import Home from './src/routes/Home';
 
 
-const AppStackNavigator = createSwitchNavigator({
+
+const Navigator = createSwitchNavigator({
     Login:{
-        screen: FormLogin
-    } 
+        screen:FormLogin
+    },
+    Cadastro:{
+      screen:FormCadastro,
+      navigationOptions: ({navigation})=>{
+        return{
+          pass: {
+            pass: navigation.getParam('pass', '')
+          },
+          user: {
+            user: navigation.getParam('user','')
+          }
+        }
+      }
+    } ,
+    Home:{
+    screen:Home
+}  
 
 });
 
-
+export default createAppContainer(Navigator);
 
 const style = StyleSheet.create({
     background:{
