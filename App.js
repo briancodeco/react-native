@@ -12,20 +12,21 @@ import Home from './src/routes/Home';
 
 const Navigator = createSwitchNavigator({
     Login:{
-        screen:FormLogin
+        screen:FormLogin,
+        navigationOptions: ({navigation})=>{
+          return{
+            pass: {
+              pass: navigation.getParam('pass', '')
+            },
+            user: {
+              user: navigation.getParam('user','')
+            }
+          }
+        }
     },
     Cadastro:{
       screen:FormCadastro,
-      navigationOptions: ({navigation})=>{
-        return{
-          pass: {
-            pass: navigation.getParam('pass', '')
-          },
-          user: {
-            user: navigation.getParam('user','')
-          }
-        }
-      }
+      
     } ,
     Home:{
     screen:Home

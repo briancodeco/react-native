@@ -8,14 +8,21 @@ import { Actions } from 'react-native-router-flux';
     super(props);
 
     this.state = {
-      user: "",
-      pass: ""
+      user: '',
+      pass: '',
+      typedText : ''
     };
-    /**clicou = () => {
-      if(user == 'a' && pass == 'b')
-      this.props.navigation.navigate("Home");
+    clicou = () => {
+      if(this.state.user == usuario){
+      return this.props.navigation.navigate("Home");
+      } else {
+        window.prompt(user);
+      }
     }
-    */
+    
+    FormLogin.navigationOptions = ({ navigation }) => ({
+      usuario : navigation.state.params.usuario
+    });
   }
   
   render (){
@@ -32,7 +39,17 @@ import { Actions } from 'react-native-router-flux';
     <TextInput placeholder="Email"
     style={style.input}
       autoCorrect={false}
-      value={this.state.user}
+      onChangeText={(text) => {
+        this.setState(
+            (previousState) => {
+                return{
+                    typedText: text
+                    };
+                }
+         );                    
+    }
+}
+      
       
       />
       <TextInput placeholder="Senha"
@@ -43,7 +60,7 @@ import { Actions } from 'react-native-router-flux';
 
       <TouchableHighlight
       onPress={() => {
-        this.props.navigation.navigate("Home");
+        clicou();
       }}
       style={style.btnSubmit} 
        

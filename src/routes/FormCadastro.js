@@ -16,25 +16,47 @@ class FormCadastro extends Component{
     
         this.state = {
           user: "",
-          pass: ""
+          pass: "",
+          typedText: 'please type your text'
         };
       }
+recebeU = () => {
+    this.setState((previousState)=> {
+        return {
+            user : typedText
+             };
+        }
+    );
+    
 
+}
     
     render (){
 return(
     
     <View style={{ flex: 1, padding: 10 }}>
         <View style={{ flex: 4, justifyContent: 'center' }}>
-            <TextInput placeholder="E-mail" style={{ fontSize: 20, height: 45 }} />
+            <TextInput 
+            onChangeText={
+                (text) => {
+                    this.setState(
+                        (previousState) => {
+                            return{
+                                typedText: text
+                                };
+                            }
+                     );                    
+                }
+            }
+            placeholder="E-mail" style={{ fontSize: 20, height: 45 }} />
             <TextInput placeholder="Senha" style={{ fontSize: 20, height: 45 }} />
         </View>
         <View style={{ flex: 1 }}>
-            <Button title="Cadastrar" color="#115E54" onPress={() => false} />
+            <Button title="Cadastrar" color="#115E54" onPress={() => recebeU() } />
         </View>
         <TouchableHighlight 
         onPress={() => {
-        this.props.navigation.navigate("Login");
+        this.props.navigation.navigate("Login",{ usuario :this.state.user});
         
       }}>
         <Text>Voltar</Text>
