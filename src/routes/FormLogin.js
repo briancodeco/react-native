@@ -4,32 +4,45 @@ import {  Image, View, KeyboardAvoidingView, TextInput, TouchableOpacity,Text, S
 import { Actions } from 'react-native-router-flux';
 
  class FormLogin extends Component{
+  
+  componentetDidMount(){
+
+    FormLogin.navigationOptions = ({ navigation }) => ({
+      usuario : navigation.navigate.state.params.usuario  
+      
+    });
+      console.log(usuario);
+      console.log(navigation);
+  }
+      
   constructor(props) {
     super(props);
-
+    var usuario = '';
+    console.log();
     this.state = {
       user: '',
       pass: '',
       typedText : ''
+
     };
     clicou = () => {
-      if(this.state.user == usuario){
+      if(this.state.typedText == usuario){
       return this.props.navigation.navigate("Home");
       } else {
-        window.prompt(user);
+        console.log(usuario);
+        console.log(navigation);
       }
     }
-    
-    FormLogin.navigationOptions = ({ navigation }) => ({
-      usuario : navigation.state.params.usuario
-    });
   }
-  
+ 
+
   render (){
   return(
-  
+   
     <KeyboardAvoidingView style={style.background}>
+       
     <View style={style.containerLogo}>
+        
     <Image
     source={require('../../src/ronaldinho.png')}
     />
@@ -45,6 +58,7 @@ import { Actions } from 'react-native-router-flux';
                 return{
                     typedText: text
                     };
+                   
                 }
          );                    
     }

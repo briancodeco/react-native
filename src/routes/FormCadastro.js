@@ -52,11 +52,13 @@ return(
             <TextInput placeholder="Senha" style={{ fontSize: 20, height: 45 }} />
         </View>
         <View style={{ flex: 1 }}>
-            <Button title="Cadastrar" color="#115E54" onPress={() => recebeU() } />
+            <Button title="Cadastrar" color="#115E54" onPress={() => {
+            this.props.navigation.navigate("Login",{ usuario : this.state.typedText});
+            }} />
         </View>
         <TouchableHighlight 
         onPress={() => {
-        this.props.navigation.navigate("Login",{ usuario :this.state.user});
+        this.props.navigation.navigate("Login");
         
       }}>
         <Text>Voltar</Text>
